@@ -11,10 +11,11 @@
     <tr *ngFor="let c of collectionOrder">
       <td>{{ c.typePresta }}</td>
       <td>{{ c.client }}</td>
-      <td>{{ c.nbJours }}</td>
+      <!-- <td>{{ c | days }}</td> -->
+      <td>{{ c.nbJours | days2 }}</td>
       <td>{{ c.tjmHT }}</td>
-      <td>{{ c.totalHT() }}</td>
-      <td>{{ c.totalTTC() }}</td>
+      <td>{{ c | total | currency: 'EUR'}}</td>
+      <td>{{ c | total: 'TTC' | currency: 'EUR'}}</td>
       <td>{{ c.state }}</td>
     </tr>
   </tbody>
