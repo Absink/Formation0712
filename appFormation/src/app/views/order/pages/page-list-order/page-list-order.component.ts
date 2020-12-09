@@ -17,17 +17,17 @@ export class PageListOrderComponent implements OnInit {
   public btnRoute: BtnI;
   public btnHref: BtnI;
   public btnAction: BtnI;
+  public btnFilter: BtnI;
+  public allOrder: boolean;
 
   constructor(private orderService: OrdersService) { }
 
   ngOnInit(): void {
     this.headers =['Type', 'Client', 'Nb. jours', 'TJM HT', 'Total HT', 'Total TTC', 'Etat'];
-    this.btnRoute = {label:'Add an order',  route: 'add'};
-    this.btnHref = {label: 'Go to Google', href: 'http://www.google.fr'};
-    this.btnAction = {label: 'Open popup', action: true };
+    this.createBtns();
     this.orderService.collection.subscribe(datas => {
       this.orders = datas;
-      console.log(this.orders);
+      this.allOrder = true;
     });
   }
 
@@ -42,5 +42,26 @@ export class PageListOrderComponent implements OnInit {
 
   public openPopup(): void {
     console.log('Test open popup');
+  }
+
+  public createBtns(): void {
+    this.btnRoute = {label:'Add an order',  route: 'add'};
+    this.btnHref = {label: 'Go to Google', href: 'http://www.google.fr'};
+    this.btnAction = {label: 'Open popup', action: true };
+    this.btnFilter = { action: true };
+  }
+
+  public filterState(): void {
+    if (this.allOrder) {
+      this.orderService.getFilterByState(StateOrder.CANCEL).subscribe(datas => {
+        this.orders = datas;
+        this.allOrder = false;
+      });
+    } else {
+      this.orderService.collection.subscribe(datas => {
+        this.orders = datas;
+        this.allOrder = true;
+      });
+    }
   }
 }

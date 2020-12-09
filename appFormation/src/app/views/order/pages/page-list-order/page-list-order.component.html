@@ -23,3 +23,6 @@
 <app-btn [label]="btnRoute.label" [route]="btnRoute.route"></app-btn>
 <app-btn [label]="btnHref.label" [href]="btnHref.href"></app-btn>
 <app-btn [label]="btnAction.label" [action]="btnAction.action" (clicked)="openPopup()"></app-btn>
+<app-btn [action]="btnFilter.action" (clicked)="filterState()">
+  <app-icon-filter></app-icon-filter>
+</app-btn>

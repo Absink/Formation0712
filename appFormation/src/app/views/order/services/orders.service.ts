@@ -80,4 +80,14 @@ export class OrdersService {
     obj.state = state;
     return this.update(obj);
   }
+
+  // Get with filter
+  public getFilterByState(state: StateOrder): Observable<Order[]> {
+    return this.http.get<Order[]>(`${this.url}orders`).pipe(
+      map(datas => datas
+        .filter(data => data.state === state)
+          .map(filterData => new Order(filterData))
+        )
+    )
+  }
 }
