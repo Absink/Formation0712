@@ -2,10 +2,10 @@
   <tr *ngFor="let c of orders">
     <td>{{ c.typePresta }}</td>
     <td>{{ c.client }}</td>
-    <td>{{ c.nbJours | days2 }}</td>
+    <td [appColorDay]="c.nbJours">{{ c.nbJours | days2 }}</td>
     <td>{{ c.tjmHT }}</td>
     <td>{{ c | total | currency: 'EUR'}}</td>
     <td>{{ c | total: 'TTC' | currency: 'EUR'}}</td>
-    <td>{{ c.state }}</td>
+    <td [appColorState]="c.state">{{ c.state }}</td>
   </tr>
 </app-table-light>
