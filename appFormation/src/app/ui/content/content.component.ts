@@ -19,8 +19,13 @@ export class ContentComponent implements OnInit {
     this.open = !this.open;
   }
 
-  public deconnexion(): void {
-    console.log("Clic");
+  public connexion(): void {
+    if (localStorage.userConnected === 'true') {
+      localStorage.removeItem('userConnected');
+    }
+    else {
+      localStorage.userConnected = 'true';
+    }
   }
 
 }
