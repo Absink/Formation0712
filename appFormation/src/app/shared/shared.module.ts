@@ -14,7 +14,8 @@ import { Days2Pipe } from './pipes/days2.pipe';
   ],
   exports: [
     TableLightComponent,
-    TotalPipe
+    TotalPipe,
+    Days2Pipe
   ]
 })
 export class SharedModule { }
