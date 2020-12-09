@@ -8,6 +8,7 @@ const routes: Routes = [
   { path: 'home', component: PageHomeComponent },
   { path: 'orders', canActivate: [ControlService], loadChildren: () => import('./views/order/order.module').then(m => m.OrderModule) },
   { path: 'clients', canActivate: [ControlService], loadChildren: () => import('./views/client/client.module').then(m => m.ClientModule) },
+  { path: 'users', canActivate: [ControlService], loadChildren: () => import('./views/user/user.module').then(m => m.UserModule) },
   { path: '', redirectTo: '/home', pathMatch: 'full' },
   { path: '**', component: PageNotFoundComponent },
 ];

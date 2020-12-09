@@ -1,17 +1,15 @@
-<app-table-light *ngIf="clients" [headers]="headers">
-  <tr *ngFor="let c of clients">
-    <td>{{ c.name }}</td>
-    <td>{{ c.tva }}</td>
-    <td>{{ c.ca }}</td>
-    <td>{{ c.comment }}</td>
-    <!-- <td>{{ c.state }}</td> -->
-    <td>
-      <select (change)="updateState(c, $event)">
-        <option *ngFor="let state of statesClient" [value]="state" [selected]="state === c.state">
-          {{ state }}
-        </option>
-      </select>
-    </td>
-    <td>{{ c.total() }}</td>
-  </tr>
-</app-table-light>
+<tr *ngFor="let c of clients">
+  <td>{{ c.name }}</td>
+  <td>{{ c.tva }}</td>
+  <td>{{ c.ca }}</td>
+  <td>{{ c.comment }}</td>
+  <!-- <td>{{ c.state }}</td> -->
+  <td>
+    <select (change)="updateState(c, $event)">
+      <option *ngFor="let state of statesClient" [value]="state" [selected]="state === c.state">
+        {{ state }}
+      </option>
+    </select>
+  </td>
+  <td>{{ c.total() }}</td>
+</tr>

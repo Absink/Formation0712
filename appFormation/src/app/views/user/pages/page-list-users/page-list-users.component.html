@@ -1,0 +1,8 @@
+<app-table-striped *ngIf="users" [headers]="headers">
+  <tr *ngFor="let u of users">
+    <td>{{ u.username }}</td>
+    <td>{{ u.role }}</td>
+  </tr>
+</app-table-striped>
+
+<app-btn [label]="btnAdd.label" [route]="btnAdd.route"></app-btn>
