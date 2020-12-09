@@ -2,6 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
+import { StateClient } from 'src/app/shared/enums/state-client.enum';
 import { Client } from 'src/app/shared/models/client.model';
 import { environment } from 'src/environments/environment';
 
@@ -31,5 +32,19 @@ export class ClientsService {
 
   set collection(col: Observable<Client[]>) {
     this.pCollection = col;
+  }
+
+  public update(client: Client): Observable<Client> {
+    return this.http.put<Client>(`${this.url}clients/${client.id}`, client).pipe(
+      map(datas => {
+        return new Client(datas);
+      })
+    )
+  }
+
+  public changeState(client: Client, state: StateClient): Observable<Client> {
+    const o = new Client({...client});
+    o.state = state;
+    return this.update(o);
   }
 }
