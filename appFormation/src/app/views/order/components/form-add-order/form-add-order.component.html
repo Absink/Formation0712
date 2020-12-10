@@ -12,6 +12,9 @@
       <label for="client">Client</label>
       <input formControlName="client" type="text" class="form-control" id="client">
     </div>
+    <!-- <div *ngIf="form.get('client').invalid && form.get('client').touched" class="alert alert-danger">Champs invalide</div> -->
+    <div *ngIf="form.get('client').errors?.required && form.get('client').touched" class="alert alert-danger">Champs vide</div>
+    <div *ngIf="form.get('client').errors?.minlength && form.get('client').touched" class="alert alert-danger">Min 5 char</div>
 
     <div class="form-group">
       <label for="nbJours">Nombre jours</label>
@@ -27,6 +30,7 @@
       <label for="tva">TVA</label>
       <input formControlName="tva" type="number" class="form-control" id="tva">
     </div>
+    <div *ngIf="form.get('tva').invalid && form.get('tva').touched" class="alert alert-danger">TVA vide</div>
 
     <div class="form-group">
       <label for="state">Etat</label>
@@ -40,7 +44,7 @@
       <textarea formControlName="comment" class="form-control" id="comment"></textarea>
     </div>
 
-    <button type="submit" class="btn btn-primary">Sauvegarder</button>
+    <button type="submit" [disabled]="form.invalid" class="btn btn-primary">Sauvegarder</button>
 
   </form>
 </div>

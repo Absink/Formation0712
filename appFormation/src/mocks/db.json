@@ -67,6 +67,26 @@
       "state": "OPTION",
       "comment": "gfdsgdfg",
       "id": 7
+    },
+    {
+      "typePresta": null,
+      "client": "rererere",
+      "nbJours": 1,
+      "tva": 20,
+      "state": "OPTION",
+      "comment": null,
+      "tjm": 500,
+      "id": 8
+    },
+    {
+      "typePresta": null,
+      "client": "aaaaa",
+      "nbJours": 1,
+      "tva": 20,
+      "state": "OPTION",
+      "comment": null,
+      "tjm": 500,
+      "id": 9
     }
   ],
   "clients": [
