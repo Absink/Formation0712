@@ -1,8 +1,10 @@
-<app-table-striped *ngIf="users | async as userList" [headers]="headers">
-  <tr *ngFor="let u of userList">
-    <td>{{ u.username }}</td>
-    <td>{{ u.role }}</td>
-  </tr>
-</app-table-striped>
+<app-titres-b [title]="title" [subtitle]="subtitle">
+  <app-table-striped *ngIf="users | async as userList" [headers]="headers">
+    <tr *ngFor="let u of userList">
+      <td>{{ u.username }}</td>
+      <td>{{ u.role }}</td>
+    </tr>
+  </app-table-striped>
 
-<app-btn [label]="btnAdd.label" [route]="btnAdd.route"></app-btn>
+  <app-btn [label]="btnAdd.label" [route]="btnAdd.route"></app-btn>
+</app-titres-b>

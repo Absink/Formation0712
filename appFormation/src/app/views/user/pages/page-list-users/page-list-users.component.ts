@@ -14,12 +14,16 @@ export class PageListUsersComponent implements OnInit {
   public headers: string[];
   public users: Observable<User[]>;
   public btnAdd: BtnI;
+  public title: string;
+  public subtitle: string;
 
   constructor(private userService: UsersService) { }
 
   ngOnInit(): void {
     this.headers = ['Username', 'Role'];
     this.btnAdd = {label: 'Add', route:'add'};
+    this.title = 'Users';
+    this.subtitle = 'All users';
     this.users = this.userService.getAll();
   }
 

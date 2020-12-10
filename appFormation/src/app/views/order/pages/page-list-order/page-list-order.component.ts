@@ -22,11 +22,15 @@ export class PageListOrderComponent implements OnInit {
   public btnAction: BtnI;
   public btnFilter: BtnI;
   public allOrder: boolean;
+  public title: string;
+  public subtitle: string;
 
   constructor(private orderService: OrdersService) { }
 
   ngOnInit(): void {
     this.headers =['Type', 'Client', 'Nb. jours', 'TJM HT', 'Total HT', 'Total TTC', 'Etat'];
+    this.title = "Orders";
+    this.subtitle = "List of orders";
     this.createBtns();
     this.orders = this.orderService.collection;
     // this.orderService.collection.subscribe(datas => {

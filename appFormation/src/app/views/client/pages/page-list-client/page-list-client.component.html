@@ -1,21 +1,23 @@
-<app-table-dark *ngIf="clients | async as clientList" [headers]="headers">
-  <tr *ngFor="let c of clientList">
-    <td>{{ c.name }}</td>
-    <td>{{ c.tva }}</td>
-    <td>{{ c.ca }}</td>
-    <td>{{ c.comment }}</td>
-    <!-- <td>{{ c.state }}</td> -->
-    <td>
-      <select (change)="updateState(c, $event)">
-        <option *ngFor="let state of statesClient" [value]="state" [selected]="state === c.state">
-          {{ state }}
-        </option>
-      </select>
-    </td>
-    <td>{{ c.total() }}</td>
-  </tr>
-</app-table-dark>
+<app-titres-b [title]="title" [subtitle]="subtitle">
+  <app-table-dark *ngIf="clients | async as clientList" [headers]="headers">
+    <tr *ngFor="let c of clientList">
+      <td>{{ c.name }}</td>
+      <td>{{ c.tva }}</td>
+      <td>{{ c.ca }}</td>
+      <td>{{ c.comment }}</td>
+      <!-- <td>{{ c.state }}</td> -->
+      <td>
+        <select (change)="updateState(c, $event)">
+          <option *ngFor="let state of statesClient" [value]="state" [selected]="state === c.state">
+            {{ state }}
+          </option>
+        </select>
+      </td>
+      <td>{{ c.total() }}</td>
+    </tr>
+  </app-table-dark>
 
-<app-btn [label]="btnFilter.label" [action]="btnFilter.action" (clicked)="filter()">
-  <app-icon-filter *ngIf="fullTable"></app-icon-filter>
-</app-btn>
+  <app-btn [label]="btnFilter.label" [action]="btnFilter.action" (clicked)="filter()">
+    <app-icon-filter *ngIf="fullTable"></app-icon-filter>
+  </app-btn>
+</app-titres-b>

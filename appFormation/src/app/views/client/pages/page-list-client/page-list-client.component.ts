@@ -18,11 +18,15 @@ export class PageListClientComponent implements OnInit {
   public statesClient = Object.values(StateClient);
   public btnFilter: BtnI;
   public fullTable: boolean;
+  public title: string;
+  public subtitle: string;
 
   constructor(private clientService: ClientsService) { }
 
   ngOnInit(): void {
     this.headers =['Name', 'TVA', 'CA', 'Commentaires', 'Etat', 'Total']
+    this.title = "Clients";
+    this.subtitle = "List of clients";
     this.btnFilter = { label: '', action: true }
     this.clients = this.clientService.collection;
     this.fullTable = true;
