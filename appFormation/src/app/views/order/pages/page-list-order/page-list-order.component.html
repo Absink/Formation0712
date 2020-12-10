@@ -1,5 +1,4 @@
 <app-titres-a [title]="title" [subtitle]="subtitle">
-
   <app-table-light *ngIf="orders | async as orderList" [headers]="headers">
     <tr *ngFor="let c of orderList">
       <td>{{ c.typePresta }}</td>
@@ -29,5 +28,4 @@
   <app-btn [action]="btnFilter.action" (clicked)="filterState()">
     <app-icon-filter></app-icon-filter>
   </app-btn>
-
 </app-titres-a>
