@@ -91,6 +91,13 @@ export class OrdersService {
     )
   }
 
-  // public getByFilter(state?: StateOrder, tjmHT?: number): Observable<Order[]> {
+  // Add order
+  public add(order: Order): Observable<Order> {
+    return this.http.post<Order>(`${this.url}orders`, order).pipe(
+      map(datas => {
+        return new Order(datas);
+      })
+    )
+  }
 
 }

@@ -49,6 +49,24 @@
       "client": "M2i",
       "comment": "merci m2i",
       "id": 5
+    },
+    {
+      "typePresta": "test",
+      "client": "test",
+      "nbJours": 1,
+      "tva": 20,
+      "state": "OPTION",
+      "comment": "mon commentaire",
+      "id": 6
+    },
+    {
+      "typePresta": "rezt",
+      "client": "fqgfd",
+      "nbJours": 1,
+      "tva": 20,
+      "state": "OPTION",
+      "comment": "gfdsgdfg",
+      "id": 7
     }
   ],
   "clients": [
@@ -83,6 +101,14 @@
       "ca": 75000,
       "comment": "new !!",
       "id": 6
+    },
+    {
+      "name": "new client",
+      "ca": 50000,
+      "tva": 20,
+      "state": "Active",
+      "comment": "no comment",
+      "id": 7
     }
   ],
   "users": [

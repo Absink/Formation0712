@@ -53,4 +53,12 @@ export class ClientsService {
       map(datas => datas.filter(data => data.ca < ca).map(dataFilter => new Client(dataFilter)))
     );
   }
+
+  public add(client: Client): Observable<Client> {
+    return this.http.post<Client>(`${this.url}clients`, client).pipe(
+      map(datas => {
+        return new Client(datas);
+      })
+    )
+  }
 }
