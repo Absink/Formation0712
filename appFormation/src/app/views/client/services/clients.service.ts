@@ -47,4 +47,10 @@ export class ClientsService {
     o.state = state;
     return this.update(o);
   }
+
+  public getFilterByCA(ca: number): Observable<Client[]> {
+    return this.http.get<Client[]>(`${this.url}clients`).pipe(
+      map(datas => datas.filter(data => data.ca < ca).map(dataFilter => new Client(dataFilter)))
+    );
+  }
 }
