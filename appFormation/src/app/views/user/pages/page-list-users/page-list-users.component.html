@@ -1,5 +1,5 @@
-<app-table-striped *ngIf="users" [headers]="headers">
-  <tr *ngFor="let u of users">
+<app-table-striped *ngIf="users | async as userList" [headers]="headers">
+  <tr *ngFor="let u of userList">
     <td>{{ u.username }}</td>
     <td>{{ u.role }}</td>
   </tr>

@@ -90,4 +90,7 @@ export class OrdersService {
         )
     )
   }
+
+  // public getByFilter(state?: StateOrder, tjmHT?: number): Observable<Order[]> {
+
 }

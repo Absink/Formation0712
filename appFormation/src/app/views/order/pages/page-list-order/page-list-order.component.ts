@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { Observable } from 'rxjs';
+import { map } from 'rxjs/operators';
 import { StateOrder } from 'src/app/shared/enums/state-order.enum';
 import { BtnI } from 'src/app/shared/interfaces/btn-i';
 import { Order } from 'src/app/shared/models/order.model';
@@ -11,7 +13,8 @@ import { OrdersService } from '../../services/orders.service';
 })
 export class PageListOrderComponent implements OnInit {
 
-  public orders: Order[];
+  //public orders: Order[];
+  public orders: Observable<Order[]>;
   public headers: string[];
   public states = Object.values(StateOrder);
   public btnRoute: BtnI;
@@ -25,18 +28,17 @@ export class PageListOrderComponent implements OnInit {
   ngOnInit(): void {
     this.headers =['Type', 'Client', 'Nb. jours', 'TJM HT', 'Total HT', 'Total TTC', 'Etat'];
     this.createBtns();
-    this.orderService.collection.subscribe(datas => {
-      this.orders = datas;
-      this.allOrder = true;
-    });
+    this.orders = this.orderService.collection;
+    // this.orderService.collection.subscribe(datas => {
+    //   this.orders = datas;
+    //   this.allOrder = true;
+    // });
   }
 
   public changeState(order: Order, event): void {
     console.log(event);
     this.orderService.changeState(order, event.target.value).subscribe(data => {
-      console.log("Before", order.state);
       order.state = data.state;
-      console.log("After", order.state);
     })
   }
 
@@ -53,15 +55,22 @@ export class PageListOrderComponent implements OnInit {
 
   public filterState(): void {
     if (this.allOrder) {
-      this.orderService.getFilterByState(StateOrder.CANCEL).subscribe(datas => {
-        this.orders = datas;
-        this.allOrder = false;
-      });
+      this.orders = this.orderService.collection.pipe(
+        map(datas => datas.filter(data => data.state === StateOrder.CANCEL).map(filterData => new Order(filterData)))
+      )
+      // this.orders = this.orderService.getFilterByState(StateOrder.CANCEL);
+      this.allOrder = false;
+      // this.orderService.getFilterByState(StateOrder.CANCEL).subscribe(datas => {
+      //   this.orders = datas;
+      //   this.allOrder = false;
+      // });
     } else {
-      this.orderService.collection.subscribe(datas => {
-        this.orders = datas;
-        this.allOrder = true;
-      });
+      this.orders = this.orderService.collection;
+      this.allOrder = true;
+      // this.orderService.collection.subscribe(datas => {
+      //   this.orders = datas;
+      //   this.allOrder = true;
+      // });
     }
   }
 }
