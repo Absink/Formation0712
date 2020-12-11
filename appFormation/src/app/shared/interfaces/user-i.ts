@@ -5,4 +5,5 @@ export interface UserI {
   username: string;
   password: string;
   role: RoleUser;
+  date: Date;
 }

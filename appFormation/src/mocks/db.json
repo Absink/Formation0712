@@ -136,19 +136,22 @@
       "id": 1,
       "username": "admin",
       "password": "admin",
-      "role": "ADMIN"
+      "role": "ADMIN",
+      "date": "2020-10-01"
     },
     {
       "id": 2,
       "username": "user1",
       "password": "user1",
-      "role": "USER"
+      "role": "USER",
+      "date": "2020-10-01"
     },
     {
       "id": 3,
       "username": "user2",
       "password": "user2",
-      "role": "USER"
+      "role": "USER",
+      "date": "2020-10-01"
     }
   ]
 }

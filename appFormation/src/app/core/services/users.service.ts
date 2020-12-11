@@ -43,10 +43,27 @@ export class UsersService {
 
   // Get by username + pass
   public getByUsernameAndPassword(user: User): Observable<User> {
-    return this.http.get<User>(`${this.urlApi}users?username=${user.username}&password=${user.password}`).pipe(
-      map(data => { return new User(data)})
+      return this.http.get<User>(`${this.urlApi}users?username=${user.username}&password=${user.password}`).pipe(
+      map(data => {
+        return new User(data[0]);
+      })
     )
+    // console.log(this.urlApi)
+    // return this.http.get<any>(" " + this.urlApi + "​​​​​users?username=" + ​​​​​user.username).pipe(
+    //     map(data => {
+    //       console.log(data)
+    //       return new User(data[0]);
+    //     })
+    //   )
+
   }
 
+  public getById(id: number): Observable<User> {
+    return this.http.get<User>(`${this.urlApi}users/${id}`).pipe(
+      map(datas => {
+        return new User(datas);
+      })
+    )
+  }
 
 }

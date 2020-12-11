@@ -10,11 +10,13 @@ import { BtnComponent } from './components/btn/btn.component';
 import { RouterModule } from '@angular/router';
 import { TableDarkComponent } from './components/table-dark/table-dark.component';
 import { TableStripedComponent } from './components/table-striped/table-striped.component';
+import { ColorRoleDirective } from './directives/color-role.directive';
 
 
 
 @NgModule({
-  declarations: [TableLightComponent, TotalPipe, DaysPipe, Days2Pipe, ColorStateDirective, ColorDayDirective, BtnComponent, TableDarkComponent, TableStripedComponent],
+  declarations: [TableLightComponent, TotalPipe, DaysPipe, Days2Pipe, ColorStateDirective,
+    ColorDayDirective, BtnComponent, TableDarkComponent, TableStripedComponent, ColorRoleDirective],
   imports: [
     CommonModule,
     RouterModule
@@ -33,6 +35,7 @@ import { TableStripedComponent } from './components/table-striped/table-striped.
     // Directives
     ColorStateDirective,
     ColorDayDirective,
+    ColorRoleDirective
   ]
 })
 export class SharedModule { }

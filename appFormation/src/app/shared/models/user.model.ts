@@ -6,6 +6,7 @@ export class User implements UserI {
   username: string;
   password: string;
   role = RoleUser.USER;
+  date: Date;
 
   constructor(obj?: Partial<User>) {
     if (obj) {

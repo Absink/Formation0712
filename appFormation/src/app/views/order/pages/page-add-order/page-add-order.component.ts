@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Order } from 'src/app/shared/models/order.model';
 import { OrdersService } from '../../services/orders.service';
 
@@ -16,12 +16,18 @@ export class PageAddOrderComponent implements OnInit {
 
   constructor(
     private orderService: OrdersService,
-    private router: Router
+    private router: Router,
+    private route: ActivatedRoute
     ) { }
 
   ngOnInit(): void {
     this.title = "Orders";
     this.subtitle = "Add an order";
+    this.route.paramMap.subscribe(params => {
+      if (params.get('id')) {
+        console.log(params.get('id'))
+      }
+    })
   }
 
   public addOrder(order: Order): void {

@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { AfterViewInit, Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-content',
@@ -9,7 +10,7 @@ export class ContentComponent implements OnInit {
 
   public open: boolean;
 
-  constructor() { }
+  constructor(private router: Router) { }
 
   ngOnInit(): void {
     this.open = false;
@@ -19,13 +20,9 @@ export class ContentComponent implements OnInit {
     this.open = !this.open;
   }
 
-  public connexion(): void {
-    if (localStorage.userConnected === 'true') {
-      localStorage.removeItem('userConnected');
-    }
-    else {
-      localStorage.userConnected = 'true';
-    }
+  public deconnexion(): void {
+    localStorage.removeItem('id');
+    this.router.navigate(['/home']);
   }
 
 }

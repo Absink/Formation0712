@@ -1,8 +1,9 @@
 <app-titres-b [title]="title" [subtitle]="subtitle">
-  <app-table-striped *ngIf="users | async as userList" [headers]="headers">
-    <tr *ngFor="let u of userList">
-      <td>{{ u.username }}</td>
-      <td>{{ u.role }}</td>
+  <app-table-striped *ngIf="users" [headers]="headers">
+    <tr *ngFor="let u of users">
+      <td [appColorRole]="u.role">{{ u.username }}</td>
+      <td [appColorRole]="u.role">{{ u.role }}</td>
+      <td>{{ u.date | date: 'full'}}</td>
     </tr>
   </app-table-striped>
 

@@ -1,6 +1,6 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
-import { Observable } from 'rxjs';
+import { Component, OnInit } from '@angular/core';
 import { UsersService } from 'src/app/core/services/users.service';
+import { RoleUser } from 'src/app/shared/enums/role-user.enum';
 import { BtnI } from 'src/app/shared/interfaces/btn-i';
 import { User } from 'src/app/shared/models/user.model';
 
@@ -12,7 +12,9 @@ import { User } from 'src/app/shared/models/user.model';
 export class PageListUsersComponent implements OnInit {
 
   public headers: string[];
-  public users: Observable<User[]>;
+  // public users: Observable<User[]>;
+  public users: User[] = [];
+  public userConnected: User;
   public btnAdd: BtnI;
   public title: string;
   public subtitle: string;
@@ -20,11 +22,19 @@ export class PageListUsersComponent implements OnInit {
   constructor(private userService: UsersService) { }
 
   ngOnInit(): void {
+    this.userService.getById(localStorage.id).subscribe(data => {
+      this.userConnected = data;
+      if (this.userConnected.role === RoleUser.ADMIN) {
+        this.userService.getAll().subscribe(data => this.users = data);
+      } else {
+        this.users.push(this.userConnected);
+      }
+
+    });
     this.headers = ['Username', 'Role'];
     this.btnAdd = {label: 'Add', route:'add'};
     this.title = 'Users';
     this.subtitle = 'All users';
-    this.users = this.userService.getAll();
   }
 
 }
