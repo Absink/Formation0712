@@ -14,6 +14,17 @@
           </select>
         </td>
         <td>{{ c.total() }}</td>
+        <td>
+          <app-btn [action]="btnView.action" (clicked)="view(c.id)">
+            <app-icon-view></app-icon-view>
+          </app-btn>
+          <app-btn [action]="btnEdit.action" (clicked)="edit(c.id)">
+            <app-icon-edit></app-icon-edit>
+          </app-btn>
+          <app-btn [action]="btnRemove.action" (clicked)="remove(c.id)">
+            <app-icon-delete></app-icon-delete>
+          </app-btn>
+        </td>
       </tr>
     </app-table-dark>
 

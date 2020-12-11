@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { Observable } from 'rxjs';
 import { StateClient } from 'src/app/shared/enums/state-client.enum';
 import { BtnI } from 'src/app/shared/interfaces/btn-i';
@@ -17,17 +18,23 @@ export class PageListClientComponent implements OnInit {
   public headers: string[];
   public statesClient = Object.values(StateClient);
   public btnFilter: BtnI;
+  public btnView: BtnI;
+  public btnEdit: BtnI;
+  public btnRemove: BtnI;
   public fullTable: boolean;
   public title: string;
   public subtitle: string;
 
-  constructor(private clientService: ClientsService) { }
+  constructor(private clientService: ClientsService, private router: Router) { }
 
   ngOnInit(): void {
-    this.headers =['Name', 'TVA', 'CA', 'Commentaires', 'Etat', 'Total']
+    this.headers =['Name', 'TVA', 'CA', 'Commentaires', 'Etat', 'Total', 'Actions']
     this.title = "Clients";
     this.subtitle = "List of clients";
     this.btnFilter = { label: '', action: true }
+    this.btnView = { label: '', action: true }
+    this.btnEdit = { label: '', action: true }
+    this.btnRemove = { action: true }
     this.clients = this.clientService.collection;
     this.fullTable = true;
   }
@@ -47,6 +54,20 @@ export class PageListClientComponent implements OnInit {
       this.clients = this.clientService.collection;
     }
 
+  }
+
+  public view(id: number): void {
+    this.clientService.remove(id).subscribe(x => { console.log(x)
+    });
+  }
+
+  public edit(id: number): void {
+    this.router.navigate([`clients/edit/${id}`])
+  }
+
+  public remove(id: number): void {
+    this.clientService.remove(id).subscribe(x => { console.log(x)
+    });
   }
 
 }

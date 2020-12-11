@@ -61,4 +61,20 @@ export class ClientsService {
       })
     )
   }
+
+  public remove(clientId: number): Observable<Client> {
+    return this.http.delete<Client>(`${this.url}clients/${clientId}`).pipe(
+      map(datas => {
+        return new Client(datas);
+      })
+    )
+  }
+
+  public getById(clientId: number): Observable<Client> {
+    return this.http.get<Client>(`${this.url}clients/${clientId}`).pipe(
+      map(datas => {
+        return new Client(datas);
+      })
+    )
+  }
 }

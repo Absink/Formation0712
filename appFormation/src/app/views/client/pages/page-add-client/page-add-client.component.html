@@ -1,3 +1,4 @@
 <app-titres-b [title]="title" [subtitle]="subtitle">
-  <app-form-add-client (clicked)="add($event)"></app-form-add-client>
+  <app-form-add-client *ngIf="clientEdition" [client]="clientEdition" (clicked)="update($event)"></app-form-add-client>
+  <app-form-add-client *ngIf="!clientEdition" (clicked)="add($event)"></app-form-add-client>
 </app-titres-b>
